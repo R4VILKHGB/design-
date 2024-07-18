@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #405d72;
+            color: #fff8f3;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: rgba(117, 134, 148, 0.9);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+            transition: background 0.3s;
+        }
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #fff8f3;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #f7e7dc;
+            color: #405d72;
+        }
+        main.container {
+            padding: 2rem;
+            animation: fadeIn 1.5s ease-in;
+            margin-top: 80px;
+            font-size: 1rem;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: #758694;
+            color: #fff8f3;
+            animation: fadeIn 2s;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            color: #f7e7dc;
+            animation: fadeInUp 1s ease-out;
+        }
+        .grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            animation: fadeIn 1.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); }
+            to { transform: translateY(0); }
+        }
+        figure {
+            margin: 0;
+            overflow: hidden; /* Add this to hide scrollbar */
+        }
+        figure img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        figure img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+        section {
+            margin: 2rem 0;
+        }
+        hgroup h2, hgroup h3 {
+            margin: 0;
+            padding: 0.5rem 0;
+            font-size: 1.5rem;
+            color: #fff8f3;
+        }
+        form label {
+            color: #fff8f3;
+            font-size: 1.2rem;
+        }
+        form input, form textarea {
+            background: #fff8f3;
+            border: none;
+            color: #405d72;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        form button {
+            background-color: #f7e7dc;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+            color: #405d72;
+        }
+        form button:hover {
+            background-color: #fff8f3;
+        }
+        footer {
+            margin-top: 2rem;
+            padding: 1rem 0;
+            text-align: center;
+            animation: fadeIn 2.5s ease-in;
+            color: #fff8f3;
+        }
+        footer a {
+            color: #f7e7dc;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .loader {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 100px;
+            height: 100px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #f7e7dc;
+            border-bottom: 16px solid #f7e7dc;
+            animation: spin 2s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        /* Remove loader after page load */
+        .loaded .loader {
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("loaded");
+        });
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(117, 134, 148, 0.95)';
+            } else {
+                nav.style.background = 'rgba(117, 134, 148, 0.9)';
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="loader"></div>
+<nav class="container-fluid">
+    <ul>
+        <li><a href="#hero"><strong>Home</strong></a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+<section id="hero" class="hero">
+    <div>
+        <h1>Welcome to My Portfolio</h1>
+        <p>Discover my work and projects</p>
+    </div>
+</section>
+<main class="container">
+    <section id="projects">
+        <hgroup>
+            <h2>Projects</h2>
+            <h3>Recent Work</h3>
+        </hgroup>
+        <div class="grid">
+            <figure>
+                <img src="https://files.oaiusercontent.com/file-bGGKoFjstEbd2x64eoG4Kb8b?se=2024-07-13T00%3A35%3A15Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D414106a3-25b8-4eb9-88fa-0fcc75a3e60e.webp&sig=i7rReGsGnhc%2Bz/yzZRxP9o/%2BjZ9YpQ1MASEQXLsk0rQ%3D" alt="Web Development Project" />
+                <figcaption><a href="#" target="_blank">View Project</a></figcaption>
+            </figure>
+            <figure>
+                <img src="your-image-url-2" alt="Another Project" />
+                <figcaption><a href="#" target="_blank">View Project</a></figcaption>
+            </figure>
+        </div>
+    </section>
+    <section id="about">
+        <hgroup>
+            <h2>About Me</h2>
+        </hgroup>
+        <p>A brief bio or statement about yourself.</p>
+    </section>
+    <section id="contact">
+        <hgroup>
+            <h2>Contact</h2>
+        </hgroup>
+        <p>Get in touch with me through the form below.</p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</main>
+<footer class="container">
+    <small><a href="#">LinkedIn</a> • <a href="#">GitHub</a></small>
+</footer>
+</body>
+</html>
